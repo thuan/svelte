@@ -1,0 +1,57 @@
+{
+	"generator-jhipster": {
+		"blueprints": [
+			{
+				"name": "generator-jhipster-svelte",
+				"version": "0.5.0"
+			}
+		],
+		"otherModules": [
+			{
+				"name": "generator-jhipster-svelte",
+				"version": "0.5.0"
+			}
+		],
+		"applicationType": "monolith",
+		"baseName": "svelte",
+		"jhipsterVersion": "7.1.0",
+		"skipClient": false,
+		"skipServer": false,
+		"skipUserManagement": false,
+		"skipCheckLengthOfIdentifier": false,
+		"skipFakeData": false,
+		"jhiPrefix": "jhi",
+		"entitySuffix": "",
+		"dtoSuffix": "DTO",
+		"testFrameworks": [],
+		"pages": [],
+		"creationTimestamp": 1632287798566,
+		"serviceDiscoveryType": false,
+		"reactive": false,
+		"authenticationType": "jwt",
+		"packageName": "com.nauhtworks.myapp",
+		"serverPort": "8080",
+		"cacheProvider": "ehcache",
+		"enableHibernateCache": true,
+		"databaseType": "sql",
+		"devDatabaseType": "h2Disk",
+		"prodDatabaseType": "postgresql",
+		"buildTool": "maven",
+		"serverSideOptions": [],
+		"websocket": false,
+		"searchEngine": false,
+		"messageBroker": false,
+		"enableSwaggerCodegen": false,
+		"clientFramework": "svelte",
+		"enableTranslation": false,
+		"languages": ["en"],
+		"packageFolder": "com/nauhtworks/myapp",
+		"jwtSecretKey": "NzMxOTYyYjZmMzRhZmM0YWM3ZThhMGM1YjNhYmYzODNhMGViNjQ0N2NmYjU2YTYyZmQ4M2Y5NGUyMjU0ZTNkYzE5YzBmNTI0NjY1NTgzY2U2ZjZjMTIwMmNiZGMwODgwN2FkODQ1MjRlZGE2ZjA1Yjc3MzhmZGJjNmRhMmIwNzI=",
+		"devServerPort": 9060,
+		"clientPackageManager": "npm",
+		"clientTheme": "none",
+		"clientThemeVariant": "",
+		"withAdminUi": true,
+		"nativeLanguage": "en"
+	}
+}
