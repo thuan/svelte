@@ -1,7 +1,0 @@
-{
-	"generator-jhipster-svelte:0.5.0": {
-		"promptValues": {
-			"packageName": "com.nauhtworks.myapp"
-		}
-	}
-}
