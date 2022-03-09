@@ -1,0 +1,59 @@
+{
+	"generator-jhipster": {
+		"authenticationType": "session",
+		"cacheProvider": "caffeine",
+		"clientFramework": "svelte",
+		"serverPort": "8080",
+		"serviceDiscoveryType": false,
+		"skipUserManagement": false,
+		"withAdminUi": true,
+		"baseName": "SampleBlogApp",
+		"buildTool": "maven",
+		"databaseType": "sql",
+		"devDatabaseType": "h2Disk",
+		"enableHibernateCache": true,
+		"enableSwaggerCodegen": false,
+		"enableTranslation": false,
+		"jhiPrefix": "jhi",
+		"languages": ["en"],
+		"messageBroker": false,
+		"prodDatabaseType": "postgresql",
+		"searchEngine": false,
+		"skipClient": false,
+		"testFrameworks": [],
+		"websocket": false,
+		"applicationType": "monolith",
+		"packageName": "com.nauhtworks.blog",
+		"packageFolder": "com/nauhtworks/blog",
+		"jhipsterVersion": "7.1.0",
+		"skipServer": false,
+		"clientPackageManager": "npm",
+		"dtoSuffix": "DTO",
+		"entitySuffix": "",
+		"reactive": false,
+		"clientTheme": "none",
+		"clientThemeVariant": "",
+		"applicationIndex": 0,
+		"entities": ["Blog", "Tag"],
+		"skipCheckLengthOfIdentifier": false,
+		"skipFakeData": false,
+		"blueprints": [
+			{
+				"name": "generator-jhipster-svelte",
+				"version": "0.5.0"
+			}
+		],
+		"otherModules": [
+			{
+				"name": "generator-jhipster-svelte",
+				"version": "0.5.0"
+			}
+		],
+		"pages": [],
+		"nativeLanguage": "en",
+		"creationTimestamp": 1632432944712,
+		"rememberMeKey": "e7dc7bbe8abbfead2fd57d710bc74aaba87d60fe5bda965e4c098a34906a84b05d8058d24ee3c8762920c6d49b20415488e5",
+		"devServerPort": 9060,
+		"lastLiquibaseTimestamp": 1632433064000
+	}
+}

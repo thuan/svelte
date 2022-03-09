@@ -1,0 +1,22 @@
+{
+	"name": "Tag",
+	"fields": [
+		{
+			"fieldName": "name",
+			"fieldType": "String",
+			"fieldValidateRules": ["required", "minlength"],
+			"fieldValidateRulesMinlength": "3"
+		}
+	],
+	"relationships": [],
+	"entityTableName": "tag",
+	"dto": "no",
+	"pagination": "pagination",
+	"service": "no",
+	"jpaMetamodelFiltering": false,
+	"fluentMethods": true,
+	"readOnly": false,
+	"embedded": false,
+	"applications": ["SampleBlogApp"],
+	"changelogDate": "20210923213744"
+}

@@ -1,0 +1,172 @@
+describe('User Management list page', () => {
+	beforeEach(() => {
+		cy.unregisterServiceWorkers()
+		cy.loginByApi(
+			Cypress.env('adminUsername'),
+			Cypress.env('adminPassword')
+		)
+		cy.visit('/admin/user-management')
+	})
+
+	it('should greets with users page title', () => {
+		cy.getBySel('userMgmtTitle')
+			.should('be.visible')
+			.should('contain', 'Users')
+	})
+
+	it('should display users table', () => {
+		cy.getBySel('userMgmtTable')
+			.should('be.visible')
+			.get('tr')
+			.eq(0)
+			.children()
+			.should('have.length', 7)
+			.get('th')
+			.eq(0)
+			.should('contain', 'ID')
+			.get('th')
+			.eq(1)
+			.should('contain', 'Login')
+			.get('th')
+			.eq(2)
+			.should('contain', 'Email')
+			.get('th')
+			.eq(3)
+			.should('contain', 'Roles')
+			.get('th')
+			.eq(4)
+			.should('contain', 'Created At')
+			.get('th')
+			.eq(5)
+			.should('contain', 'Modified By')
+			.get('th')
+			.eq(6)
+			.should('contain', 'Modified At')
+	})
+
+	it('should display "user" user record in the table', () => {
+		cy.getBySel('userMgmtTable')
+			.contains('td', 'user@localhost')
+			.parent()
+			.within($tr => {
+				cy.root()
+					.get('td')
+					.eq(1)
+					.should('contain', 'user')
+					.get('td')
+					.eq(2)
+					.should('contain', 'user@localhost')
+					.get('td')
+					.eq(3)
+					.should('contain', 'ROLE_USER')
+					.get('td')
+					.eq(4)
+					.should('contain', '-')
+					.get('td')
+					.eq(5)
+					.should('contain', 'system')
+					.get('td')
+					.eq(6)
+					.should('contain', '-')
+			})
+	})
+
+	it('should not allow actions on the current logged in user', () => {
+		cy.getBySel('userMgmtTable')
+			.contains('td', 'admin@localhost')
+			.parent()
+			.trigger('mouseenter')
+			.within($tr => {
+				cy.root()
+					.get('td')
+					.eq(6)
+					.children()
+					.getByName('toggleUserAcctBtn')
+					.should('be.disabled')
+					.getByName('viewUserBtn')
+					.should('not.be.disabled')
+					.getByName('editUserBtn')
+					.should('be.disabled')
+					.getByName('deleteUserBtn')
+					.should('be.disabled')
+			})
+	})
+
+	it('should allow deactivation of "user" account record', () => {
+		cy.getBySel('userMgmtTable')
+			.contains('td', 'user@localhost')
+			.parent()
+			.trigger('mouseenter')
+			.within($tr => {
+				cy.root()
+					.get('td')
+					.eq(6)
+					.children()
+					.getByName('toggleUserAcctBtn')
+					.should('not.be.disabled')
+			})
+	})
+
+	it('should validate the pagination controls', () => {
+		cy.getBySel('pageCtrl')
+			.eq(0)
+			.contains('div', /1-\d+ of \d+/)
+			.next()
+			.within($div => {
+				cy.root()
+					.getBySel('prevPageCtrl')
+					.should('be.disabled')
+					.get('div')
+					.should('have.text', '1')
+					.getBySel('nextPageCtrl')
+					.should('be.disabled')
+			})
+	})
+
+	it('should sort the records by login field', () => {
+		let loginValueBefore
+
+		cy.getBySel('userMgmtTable')
+			.get('tbody>tr')
+			.eq(0)
+			.within($tr => {
+				cy.root()
+					.get('td')
+					.eq(1)
+					.invoke('text')
+					.then(text => (loginValueBefore = text))
+			})
+
+		cy.intercept('**/admin/users?*').as('getUsers')
+
+		cy.getBySel('userMgmtTable')
+			.get('tr')
+			.eq(0)
+			.within($tr => {
+				cy.root()
+					.get('th')
+					.eq(1)
+					.within($td => {
+						cy.root().get('button').click()
+					})
+			})
+
+		cy.wait('@getUsers')
+
+		// eslint-disable-next-line
+		cy.wait(100)
+
+		cy.getBySel('userMgmtTable')
+			.get('tbody>tr')
+			.eq(0)
+			.within($tr => {
+				cy.root()
+					.get('td')
+					.eq(1)
+					.invoke('text')
+					.then(text => {
+						expect(text).not.eq(loginValueBefore)
+					})
+			})
+	})
+})
